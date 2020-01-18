@@ -36,13 +36,10 @@ describe('DarkSky Timeline readings', () => {
     for (let i = 1; i < hours.length; i++) {
       const offset = new Date(now) // copy of before
       // set it to the expected time
+      // this will handle wrap around if we add to like 25 or something
       offset.setHours(now.getHours() + i * TIME_BETWEEN_READINGS)
 
       const hourText = hours[i].getText()
-      console.log({
-        hourText,
-        offset: offset.getHours(),
-      })
       assert.equal(twelveToTwentyFour(hourText), offset.getHours())
     }
 
