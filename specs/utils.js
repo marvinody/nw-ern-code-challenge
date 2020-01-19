@@ -1,12 +1,17 @@
 const rp = require('request-promise')
 
 const getTempForCoords = async (lat, long) => {
-  const resp = await rp({
+  const data = await getDataForCoords(lat, long)
+  const temp = data.currently.temperature
+  return Math.round(temp)
+}
+
+// returns a promise for json object
+const getDataForCoords = (lat, long) => {
+  return rp({
     uri: `https://api.darksky.net/forecast/4d51fbb64d23886e24bc76aa280a1497/${lat},${long}`,
     json: true
   })
-  const temp = resp.currently.temperature
-  return Math.round(temp)
 }
 
 const getCoordsFromURL = (url) => {
