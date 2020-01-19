@@ -25,4 +25,5 @@ const getCoordsFromURL = (url) => {
 module.exports = {
   getCoordsFromURL,
   getTempForCoords,
+  getDataForCoords,
 }
