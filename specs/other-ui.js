@@ -62,7 +62,7 @@ describe('DarkSky UI Readings', () => {
 
   })
 
-  it('should have the correct visibility', () => {
+  it('should have the correct pressure', () => {
 
     const span = $('span.pressure__value')
     const actual = Number(span.getText())
