@@ -56,7 +56,12 @@ describe('DarkSky UI Readings', () => {
   it('should have the correct visibility', () => {
 
     const span = $('span.visibility__value')
-    const actual = Number(span.getText())
+    // parseInt is used here because visibility can look like "9" or "10+"
+    // Number will return 9 and NaN for both of those
+    // but parseInt will return 9 and 10 correctly
+    // Generally, don't want this behavior but since the plus is 'arbitrary' from
+    // a testing perspective, I think it makes sense to use it here
+    const actual = parseInt(span.getText(), 10)
     const expected = Math.round(data.currently.visibility)
     assert.equal(actual, expected)
 
