@@ -48,3 +48,5 @@ I added some logging to display both relevant pieces of data when the tests run 
 ![image showing different data points](https://i.heart.lolisports.com/marv/YzE0N.png)
 
 You can see that the api (`dataPts`) returned `0.42` for humidity but the embedded data (`embeddedDataPts` & which the application uses to display the info) has `0.41` which leads to a difference of 1 when multiplied by 100 and leads to a failure of a test.
+
+In some other cases, the frontend seems to decide to take the first hourly data point `hours[0]` and use those data points instead of the `currently`. This can also result in some false negatives since the UI is not displaying the currently status anymore...

@@ -22,12 +22,16 @@ describe('DarkSky UI Readings', () => {
     // and async call using rp to fetch the api
     data = browser.call(() => getDataForCoords(lat, long))
 
+    // the next several lines are for logging to the console to verify the data is same
+    // between frontend and backend (WHICH IS NOT ALWAYS THE CASE)
     const embedded = browser.execute(function () { return currently })
+    const embeddedHour = browser.execute(function () { return hours[0] })
     const embeddedDataPts = getDataPoints(embedded)
     const apiDataPts = getDataPoints(data.currently)
+    const hourDataPts = getDataPoints(embeddedHour)
     console.log('-'.repeat(15), 'data to check and see if api/embedded are mismatched!!', '-'.repeat(15))
     console.log({
-      apiDataPts, embeddedDataPts
+      apiDataPts, embeddedDataPts, hourDataPts
     })
   })
 
