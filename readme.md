@@ -42,3 +42,9 @@ Sometimes, there's a discrepancy between the embedded data in the webpage and th
 - use the embedded data instead of the api data to check for equality
 
 I didn't implement either of these since 1) doesn't seem right to do (since it's not checking if actual data is displayed) and 2) I was specifically told to use the api data.
+
+I added some logging to display both relevant pieces of data when the tests run and show how the data can be different and may perhaps lead to 'failing.'
+
+![image showing different data points](https://i.heart.lolisports.com/marv/YzE0N.png)
+
+You can see that the api (`dataPts`) returned `0.42` for humidity but the embedded data (`embeddedDataPts` & which the application uses to display the info) has `0.41` which leads to a difference of 1 when multiplied by 100 and leads to a failure of a test.
