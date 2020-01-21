@@ -11,7 +11,7 @@ describe('DarkSky UI Readings', () => {
     browser.url('https://darksky.net')
     // jquery like selector
     const location = $('#searchForm input')
-    location.setValue('11968')
+    location.setValue('10001')
 
     const button = $('a.searchButton')
     button.click()
