@@ -1,10 +1,5 @@
 const rp = require('request-promise')
 
-const getTempForCoords = async (lat, long) => {
-  const data = await getDataForCoords(lat, long)
-  const temp = data.currently.temperature
-  return Math.round(temp)
-}
 
 // returns a promise for json object
 const getDataForCoords = (lat, long) => {
@@ -22,8 +17,25 @@ const getCoordsFromURL = (url) => {
   return [lat, long]
 }
 
+const getTempForCoords = async (lat, long) => {
+  const data = await getDataForCoords(lat, long)
+  const temp = data.currently.temperature
+  return Math.round(temp)
+}
+
+const getDataPoints = data => ({
+  temperature: data.temperature,
+  pressure: data.pressure,
+  visibility: data.visibility,
+  dewPoint: data.dewPoint,
+  humidity: data.humidity,
+  windSpeed: data.windSpeed,
+})
+
+
 module.exports = {
   getCoordsFromURL,
   getTempForCoords,
   getDataForCoords,
+  getDataPoints,
 }

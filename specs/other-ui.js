@@ -1,5 +1,5 @@
 const assert = require('assert')
-const { getCoordsFromURL, getDataForCoords } = require('./utils')
+const { getCoordsFromURL, getDataForCoords, getDataPoints } = require('./utils')
 
 
 describe('DarkSky UI Readings', () => {
@@ -21,6 +21,14 @@ describe('DarkSky UI Readings', () => {
     const [lat, long] = getCoordsFromURL(browser.getUrl())
     // and async call using rp to fetch the api
     data = browser.call(() => getDataForCoords(lat, long))
+
+    const embedded = browser.execute(function () { return currently })
+    const embeddedDataPts = getDataPoints(embedded)
+    const apiDataPts = getDataPoints(data.currently)
+    console.log('-'.repeat(15), 'data to check and see if api/embedded are mismatched!!', '-'.repeat(15))
+    console.log({
+      apiDataPts, embeddedDataPts
+    })
   })
 
   it('should have the correct wind speed', () => {
@@ -76,3 +84,4 @@ describe('DarkSky UI Readings', () => {
 
   })
 })
+
